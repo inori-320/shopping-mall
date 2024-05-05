@@ -13,6 +13,10 @@ spring:
   cloud:
     nacos:
       server-addr: 192.168.145.128:8848
+    sentinel:
+      transport:
+        dashboard: localhost:8090
+      http-method-specify: true # 开启请求方式前缀
 mybatis-plus:
   configuration:
     default-enum-type-handler: com.baomidou.mybatisplus.core.handlers.MybatisEnumTypeHandler
@@ -44,4 +48,6 @@ knife4j:
           - com.hmall.cart.controller
 feign:
   okhttp:
+    enabled: true
+  sentinel:
     enabled: true
