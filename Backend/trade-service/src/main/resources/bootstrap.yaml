@@ -1,11 +1,11 @@
 spring:
   application:
-    name: cart-service # 微服务名称
+    name: trade-service # 微服务名称
   profiles:
     active: dev
   cloud:
     nacos:
-      server-addr: 192.168.145.128:8848
+      server-addr: 192.168.145.128
       config:
         file-extension: yaml
         shared-configs:
