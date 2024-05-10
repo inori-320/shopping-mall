@@ -4,6 +4,7 @@ import com.hmall.api.client.ItemClient;
 import com.hmall.api.dto.ItemDTO;
 import com.hmall.api.dto.OrderDetailDTO;
 import com.hmall.common.utils.CollUtils;
+import com.hmall.trade.domain.po.OrderDetail;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.openfeign.FallbackFactory;
 import org.springframework.stereotype.Component;
@@ -33,7 +34,7 @@ public class ItemClientFallbackFactory implements FallbackFactory {
             }
 
             @Override
-            public void addStock(OrderDetailDTO item) {
+            public void addStock(List<OrderDetail> items) {
                 log.error("恢复库存失败！", cause);
                 throw new RuntimeException(cause);
             }

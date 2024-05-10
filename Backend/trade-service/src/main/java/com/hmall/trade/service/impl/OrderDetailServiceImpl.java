@@ -4,7 +4,10 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hmall.trade.domain.po.OrderDetail;
 import com.hmall.trade.mapper.OrderDetailMapper;
 import com.hmall.trade.service.IOrderDetailService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * <p>
@@ -16,5 +19,10 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class OrderDetailServiceImpl extends ServiceImpl<OrderDetailMapper, OrderDetail> implements IOrderDetailService {
-
+    @Autowired
+    private OrderDetailMapper orderDetailMapper;
+    @Override
+    public List<OrderDetail> getByOrderId(Long orderId) {
+        return orderDetailMapper.getByOrderId(orderId);
+    }
 }

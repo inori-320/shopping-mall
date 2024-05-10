@@ -9,6 +9,7 @@ import com.hmall.item.domain.dto.ItemDTO;
 import com.hmall.item.domain.dto.OrderDetailDTO;
 import com.hmall.item.domain.po.Item;
 import com.hmall.item.service.IItemService;
+import com.hmall.trade.domain.po.OrderDetail;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -84,7 +85,7 @@ public class ItemController {
 
     @ApiOperation("恢复库存")
     @PutMapping("/stock/add")
-    public void addStock(@RequestBody OrderDetailDTO item){
-        itemService.addStock(item);
+    public void addStock(@RequestBody List<OrderDetail> items){
+        itemService.addStock(items);
     }
 }

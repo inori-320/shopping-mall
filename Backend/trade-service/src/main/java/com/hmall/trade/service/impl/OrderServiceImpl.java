@@ -16,12 +16,8 @@ import com.hmall.trade.service.IOrderDetailService;
 import com.hmall.trade.service.IOrderService;
 import io.seata.spring.annotation.GlobalTransactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.amqp.AmqpException;
-import org.springframework.amqp.core.Message;
-import org.springframework.amqp.core.MessagePostProcessor;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -42,6 +38,7 @@ import java.util.stream.Collectors;
 public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements IOrderService {
 
     private final IOrderService orderService;
+    private final IOrderDetailService orderDetailService;
     private final ItemClient itemClient;
     private final IOrderDetailService detailService;
     private final CartClient cartClient;
@@ -111,10 +108,8 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         // 标记订单为取消
         orderService.markOrderPayFail(orderId);
         // 恢复库存
-        OrderDetailDTO item = new OrderDetailDTO();
-        item.setItemId(orderId);
-        item.setNum(1); // TODO 需要查到用户买了多少件该物品
-        itemClient.addStock(item);
+        List<OrderDetail> items = orderDetailService.getByOrderId(orderId);
+        itemClient.addStock(items);
     }
 
     @Override
