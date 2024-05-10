@@ -5,6 +5,8 @@ import com.hmall.item.domain.dto.OrderDetailDTO;
 import com.hmall.item.domain.po.Item;
 import org.apache.ibatis.annotations.Update;
 
+import java.util.List;
+
 /**
  * <p>
  * 商品表 Mapper 接口
@@ -16,4 +18,7 @@ public interface ItemMapper extends BaseMapper<Item> {
 
     @Update("UPDATE item SET stock = stock - #{num} WHERE id = #{itemId}")
     void updateStock(OrderDetailDTO orderDetail);
+
+    @Update("update item set stock = stock + #{num} where id = #{itemId}")
+    void addStock(OrderDetailDTO item);
 }

@@ -108,11 +108,13 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
 
     @Override
     public void cancelOrder(Long orderId) {
-        Order order = orderService.getById(orderId);
         // 标记订单为取消
         orderService.markOrderPayFail(orderId);
-        // TODO 恢复库存
-        //itemClient.addStock();
+        // 恢复库存
+        OrderDetailDTO item = new OrderDetailDTO();
+        item.setItemId(orderId);
+        item.setNum(1); // TODO 需要查到用户买了多少件该物品
+        itemClient.addStock(item);
     }
 
     @Override
