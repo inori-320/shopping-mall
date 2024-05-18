@@ -2,6 +2,7 @@ package com.hmall.gateway.config;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.cloud.gateway.route.RouteDefinition;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -12,4 +13,5 @@ import java.util.List;
 public class AuthProperties {
     private List<String> includePaths;
     private List<String> excludePaths;
+    RouteDefinition
 }

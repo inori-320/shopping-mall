@@ -61,6 +61,10 @@
             <artifactId>spring-cloud-starter-alibaba-seata</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.elasticsearch.client</groupId>
+            <artifactId>elasticsearch-rest-high-level-client</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.heima</groupId>
             <artifactId>trade-service</artifactId>
             <version>1.0.0</version>
